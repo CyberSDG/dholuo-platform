@@ -3,18 +3,21 @@ name: Deploy
 on:
   push:
     branches: [main]
+    # Only runs when Vercel secrets are configured in repo Settings → Secrets
+    # Required secrets: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID, VITE_API_URL
 
 jobs:
   deploy-client:
     name: Deploy Frontend (Vercel)
     runs-on: ubuntu-latest
+    if: ${{ secrets.VERCEL_TOKEN != '' }}
     steps:
       - uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           cache-dependency-path: client/package-lock.json
 
