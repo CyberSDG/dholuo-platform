@@ -7,6 +7,7 @@ const links = [
   { to: '/translate', label: 'Translate' },
   { to: '/chat', label: 'AI Chat' },
   { to: '/contribute', label: 'Contribute' },
+  { to: '/about', label: 'About' },
 ]
 
 export default function Navbar() {

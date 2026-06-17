@@ -6,6 +6,7 @@ import WordDetail from './pages/WordDetail'
 import Practice from './pages/Practice'
 import Translate from './pages/Translate'
 import Contribute from './pages/Contribute'
+import About from './pages/About'
 
 function ComingSoon({ page }: { page: string }) {
   return (
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="/contribute" element={<Contribute />} />
         <Route path="/lessons" element={<ComingSoon page="Lessons" />} />
         <Route path="/chat" element={<ComingSoon page="AI Chat" />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </BrowserRouter>
   )
