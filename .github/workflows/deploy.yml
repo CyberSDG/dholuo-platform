@@ -1,16 +1,15 @@
 name: Deploy
 
+# Triggered manually until Vercel secrets are added to repo Settings → Secrets:
+# VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID, VITE_API_URL
+# Once secrets are set, change the trigger to: push: branches: [main]
 on:
-  push:
-    branches: [main]
-    # Only runs when Vercel secrets are configured in repo Settings → Secrets
-    # Required secrets: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID, VITE_API_URL
+  workflow_dispatch:
 
 jobs:
   deploy-client:
     name: Deploy Frontend (Vercel)
     runs-on: ubuntu-latest
-    if: ${{ secrets.VERCEL_TOKEN != '' }}
     steps:
       - uses: actions/checkout@v4
 
