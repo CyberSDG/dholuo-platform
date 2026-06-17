@@ -1,0 +1,22 @@
+{
+  "name": "dholuo-platform",
+  "version": "1.0.0",
+  "description": "Dholuo language learning platform",
+  "scripts": {
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "extract": "python3 scripts/ocr-pdf.py",
+    "seed": "node scripts/seed-db.js",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install"
+  },
+  "keywords": ["dholuo", "luo", "language", "learning"],
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "pdf-parse": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.3",
+    "tsx": "^4.22.4"
+  }
+}
