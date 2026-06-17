@@ -1,10 +1,8 @@
 name: Deploy
 
-# Triggered manually until Vercel secrets are added to repo Settings → Secrets:
-# VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID, VITE_API_URL
-# Once secrets are set, change the trigger to: push: branches: [main]
 on:
-  workflow_dispatch:
+  push:
+    branches: [main]
 
 jobs:
   deploy-client:
