@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Github } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 
 const values = [
   {
@@ -96,7 +96,7 @@ export default function About() {
             rel="noopener noreferrer"
             className="border border-gray-200 text-gray-700 font-semibold px-8 py-3 rounded-full hover:border-green-400 hover:text-green-700 transition inline-flex items-center gap-2"
           >
-            <Github className="w-4 h-4" /> View on GitHub
+            <ExternalLink className="w-4 h-4" /> View on GitHub
           </a>
         </div>
       </div>
