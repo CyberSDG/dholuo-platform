@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { RotateCcw } from 'lucide-react'
 import { wordsApi } from '../api'
 import type { Word } from '../types'
 
@@ -48,8 +49,8 @@ export default function Practice() {
           <div><p className="text-4xl font-bold text-green-600">{score.correct}</p><p className="text-gray-500 text-sm">Correct</p></div>
           <div><p className="text-4xl font-bold text-red-400">{score.wrong}</p><p className="text-gray-500 text-sm">Wrong</p></div>
         </div>
-        <button onClick={loadWords} className="bg-green-700 text-white font-semibold px-8 py-3 rounded-full hover:bg-green-800 transition">
-          Practice Again
+        <button onClick={loadWords} className="bg-green-700 text-white font-semibold px-8 py-3 rounded-full hover:bg-green-800 transition inline-flex items-center gap-2">
+          <RotateCcw className="w-4 h-4" /> Practice Again
         </button>
       </div>
     )

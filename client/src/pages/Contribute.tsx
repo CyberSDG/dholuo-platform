@@ -1,7 +1,8 @@
 import { useState } from 'react'
+import { CheckCircle } from 'lucide-react'
 import { wordsApi } from '../api'
 
-type ContribType = 'new_word' | 'correction' | 'example' | 'audio'
+type ContribType = 'new_word' | 'correction' | 'example'
 
 export default function Contribute() {
   const [type, setType] = useState<ContribType>('new_word')
@@ -32,8 +33,10 @@ export default function Contribute() {
   if (submitted) {
     return (
       <div className="max-w-2xl mx-auto px-6 py-20 text-center">
-        <div className="text-5xl mb-6">🙏</div>
-        <h2 className="text-2xl font-bold text-gray-800 mb-3">Thank you for contributing!</h2>
+        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <CheckCircle className="w-8 h-8 text-green-600" />
+        </div>
+        <h2 className="text-2xl font-bold text-gray-800 mb-3">Thank you for contributing</h2>
         <p className="text-gray-500 mb-6">Your submission has been received and will be reviewed before being added to the dictionary.</p>
         <button onClick={() => setSubmitted(false)} className="bg-green-700 text-white font-semibold px-8 py-3 rounded-full hover:bg-green-800 transition">
           Submit Another
