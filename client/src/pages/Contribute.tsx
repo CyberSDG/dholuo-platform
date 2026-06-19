@@ -85,14 +85,12 @@ export default function Contribute() {
         note: correctionNote,
       }
     }
-    if (type === 'example') {
-      return {
-        word_id: wordId,
-        dholuo_word: selectedWord?.dholuo,
-        example_dholuo: exampleDholuo,
-        example_english: exampleEnglish,
-        culturalNote,
-      }
+    return {
+      word_id: wordId,
+      dholuo_word: selectedWord?.dholuo,
+      example_dholuo: exampleDholuo,
+      example_english: exampleEnglish,
+      culturalNote,
     }
   }
 
