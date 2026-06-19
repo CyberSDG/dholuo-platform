@@ -7,6 +7,7 @@ import rateLimit from 'express-rate-limit'
 import wordsRouter from './routes/words'
 import translateRouter from './routes/translate'
 import authRouter from './routes/auth'
+import adminRouter from './routes/admin'
 import { errorHandler } from './middleware/errorHandler'
 
 dotenv.config()
@@ -31,6 +32,7 @@ app.get('/health', (_req, res) => res.json({ status: 'ok' }))
 app.use('/api/words', wordsRouter)
 app.use('/api/translate', translateRouter)
 app.use('/api/auth', authRouter)
+app.use('/api/admin', adminRouter)
 
 app.use(errorHandler)
 

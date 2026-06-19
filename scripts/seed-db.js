@@ -3,7 +3,7 @@ const fs = require('fs')
 const path = require('path')
 require('../server/node_modules/dotenv').config({ path: path.join(__dirname, '../server/.env') })
 
-const words = JSON.parse(fs.readFileSync(path.join(__dirname, 'words-raw.json'), 'utf-8'))
+const words = JSON.parse(fs.readFileSync(path.join(__dirname, 'words-parsed.json'), 'utf-8'))
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL })
 
@@ -17,6 +17,7 @@ async function seed() {
 
     for (const word of words) {
       if (!word.dholuo || !word.english?.length) { skipped++; continue }
+      word.dholuo = word.dholuo.replace(/\.+$/, '').trim()
 
       await client.query(
         `INSERT INTO words (dholuo, english, part_of_speech, meanings, examples, regional, plural, synonyms, related, category, difficulty)

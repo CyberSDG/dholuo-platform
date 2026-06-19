@@ -9,7 +9,7 @@ export const searchWords = async (req: Request, res: Response) => {
   let i = 1
 
   if (q) {
-    sql += ` AND (dholuo ILIKE $${i} OR $${i + 1} ILIKE ANY(english))`
+    sql += ` AND (dholuo ILIKE $${i} OR EXISTS (SELECT 1 FROM unnest(english) AS e WHERE e ILIKE $${i + 1}))`
     params.push(`%${q}%`, `%${q}%`)
     i += 2
   }

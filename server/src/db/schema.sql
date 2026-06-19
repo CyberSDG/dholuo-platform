@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS users (
   email      TEXT UNIQUE NOT NULL,
   username   TEXT UNIQUE NOT NULL,
   password   TEXT NOT NULL,            -- bcrypt hashed
+  role       TEXT NOT NULL DEFAULT 'user', -- 'user' | 'admin'
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
