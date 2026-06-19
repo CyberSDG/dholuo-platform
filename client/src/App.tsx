@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Wrench } from 'lucide-react'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 import Home from './pages/Home'
 import Dictionary from './pages/Dictionary'
 import WordDetail from './pages/WordDetail'
@@ -9,6 +10,7 @@ import Translate from './pages/Translate'
 import Contribute from './pages/Contribute'
 import About from './pages/About'
 import Admin from './pages/Admin'
+import Login from './pages/Login'
 
 function ComingSoon({ page }: { page: string }) {
   return (
@@ -37,7 +39,9 @@ export default function App() {
         <Route path="/chat" element={<ComingSoon page="AI Chat" />} />
         <Route path="/about" element={<About />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }

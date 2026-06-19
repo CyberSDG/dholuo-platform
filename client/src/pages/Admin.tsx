@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Navigate } from 'react-router-dom'
-import { CheckCircle, XCircle, Clock } from 'lucide-react'
+import { Navigate, useNavigate } from 'react-router-dom'
+import { CheckCircle, XCircle, Clock, LogOut } from 'lucide-react'
 import api from '../api'
 
 type Status = 'pending' | 'approved' | 'rejected'
@@ -38,7 +38,13 @@ function getTokenRole(): string | null {
 
 export default function Admin() {
   const role = getTokenRole()
+  const navigate = useNavigate()
   if (!role || role !== 'admin') return <Navigate to="/" replace />
+
+  const logout = () => {
+    localStorage.removeItem('token')
+    navigate('/login')
+  }
 
   const [stats, setStats] = useState<Stats | null>(null)
   const [contributions, setContributions] = useState<Contribution[]>([])
@@ -109,7 +115,15 @@ export default function Admin() {
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-10">
-      <h1 className="text-3xl font-bold text-gray-800 mb-2">Admin</h1>
+      <div className="flex items-center justify-between mb-2">
+        <h1 className="text-3xl font-bold text-gray-800">Admin</h1>
+        <button
+          onClick={logout}
+          className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-red-500 transition"
+        >
+          <LogOut className="w-4 h-4" /> Logout
+        </button>
+      </div>
       <p className="text-gray-500 mb-8">Review and apply community contributions.</p>
 
       {/* Stats */}

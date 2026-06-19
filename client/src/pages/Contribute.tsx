@@ -107,6 +107,7 @@ export default function Contribute() {
       await wordsApi.contribute({
         contributor: contributor || 'anonymous',
         type,
+        word_id: wordId || undefined,
         payload: buildPayload(),
       })
       setSubmitted(true)
