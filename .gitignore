@@ -34,5 +34,6 @@ out/
 tmp/
 temp/
 
-# Credentials
+# Credentials and personal notes
 ADMIN_CREDS.txt
+DEV_NOTES.md
