@@ -10,30 +10,44 @@ type GameState = 'loading' | 'card' | 'done'
 
 export default function Flashcards() {
   const navigate = useNavigate()
-  const [words, setWords] = useState<Word[]>([])
+  const [deck, setDeck] = useState<Word[]>([])
   const [current, setCurrent] = useState(0)
   const [flipped, setFlipped] = useState(false)
   const [gameState, setGameState] = useState<GameState>('loading')
   const [known, setKnown] = useState(0)
-  const [stillLearning, setStillLearning] = useState(0)
+  const [totalSeen, setTotalSeen] = useState(0)
 
   useEffect(() => {
     wordsApi.getRandom(TOTAL).then((res) => {
-      setWords(res.data.slice(0, TOTAL))
+      setDeck(res.data.slice(0, TOTAL))
       setGameState('card')
     })
   }, [])
 
   function handleKnow(knew: boolean) {
-    if (knew) setKnown((k) => k + 1)
-    else setStillLearning((s) => s + 1)
+    // Flip back first, then swap the card after animation completes
+    setFlipped(false)
+    const snapDeck = deck
+    const snapIndex = current
 
-    if (current + 1 >= words.length) {
-      setGameState('done')
-    } else {
-      setFlipped(false)
-      setTimeout(() => setCurrent((c) => c + 1), 100)
-    }
+    setTimeout(() => {
+      setTotalSeen((s) => s + 1)
+      if (knew) {
+        setKnown((k) => k + 1)
+        const next = snapDeck.filter((_, i) => i !== snapIndex)
+        if (next.length === 0) {
+          setGameState('done')
+          return
+        }
+        setDeck(next)
+        setCurrent(Math.min(snapIndex, next.length - 1))
+      } else {
+        const word = snapDeck[snapIndex]
+        const next = [...snapDeck.filter((_, i) => i !== snapIndex), word]
+        setDeck(next)
+        setCurrent(Math.min(snapIndex, next.length - 1))
+      }
+    }, 520)
   }
 
   if (gameState === 'loading') {
@@ -48,20 +62,12 @@ export default function Flashcards() {
     return (
       <div className="max-w-xl mx-auto px-6 py-16 text-center">
         <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl bg-green-50">
-          {known >= 8 ? '🎉' : known >= 5 ? '👍' : '💪'}
+          🎉
         </div>
-        <h2 className="text-2xl font-bold text-gray-800 mb-1">Round complete!</h2>
-        <div className="flex justify-center gap-6 my-6">
-          <div className="text-center">
-            <p className="text-3xl font-bold text-green-600">{known}</p>
-            <p className="text-sm text-gray-400 mt-1">I knew it</p>
-          </div>
-          <div className="w-px bg-gray-100" />
-          <div className="text-center">
-            <p className="text-3xl font-bold text-amber-500">{stillLearning}</p>
-            <p className="text-sm text-gray-400 mt-1">Still learning</p>
-          </div>
-        </div>
+        <h2 className="text-2xl font-bold text-gray-800 mb-1">All cards cleared!</h2>
+        <p className="text-gray-500 mb-6">
+          You knew {known} out of {totalSeen} attempts.
+        </p>
         <div className="flex gap-3 justify-center">
           <button
             onClick={() => navigate('/lessons')}
@@ -80,8 +86,8 @@ export default function Flashcards() {
     )
   }
 
-  const word = words[current]
-  const progress = current / words.length
+  const word = deck[current]
+  const progress = 1 - deck.length / TOTAL
 
   return (
     <div className="max-w-xl mx-auto px-6 py-8">
@@ -99,7 +105,7 @@ export default function Flashcards() {
             style={{ width: `${progress * 100}%` }}
           />
         </div>
-        <span className="text-sm text-gray-400 tabular-nums">{current + 1}/{words.length}</span>
+        <span className="text-sm text-gray-400 tabular-nums">{deck.length} left</span>
       </div>
 
       <p className="text-sm font-semibold text-gray-400 uppercase tracking-wide text-center mb-6">

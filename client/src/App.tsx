@@ -14,6 +14,7 @@ import Lessons from './pages/Lessons'
 import Chat from './pages/Chat'
 import WordMatch from './pages/WordMatch'
 import ReviewMistakes from './pages/ReviewMistakes'
+import Flashcards from './pages/Flashcards'
 
 
 export default function App() {
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="/lessons" element={<Lessons />} />
         <Route path="/lessons/match" element={<WordMatch />} />
         <Route path="/lessons/review" element={<ReviewMistakes />} />
+        <Route path="/lessons/flashcards" element={<Flashcards />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/about" element={<About />} />
         <Route path="/admin" element={<Admin />} />

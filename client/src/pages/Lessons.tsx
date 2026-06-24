@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Shuffle, AlertCircle, ChevronRight } from 'lucide-react'
+import { Shuffle, AlertCircle, ChevronRight, Layers } from 'lucide-react'
 
 function getMistakesCount(): number {
   try {
@@ -23,6 +23,22 @@ export default function Lessons() {
       <p className="text-gray-500 mb-8">Practice and strengthen your Dholuo vocabulary.</p>
 
       <div className="space-y-4">
+        <Link
+          to="/lessons/flashcards"
+          className="flex items-center justify-between bg-white rounded-2xl border border-gray-100 shadow-sm p-6 hover:border-blue-200 hover:shadow-md transition group"
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center group-hover:bg-blue-100 transition">
+              <Layers className="w-6 h-6 text-blue-600" />
+            </div>
+            <div>
+              <h2 className="font-bold text-gray-800">Flashcards</h2>
+              <p className="text-sm text-gray-500">Flip cards to reveal meanings. Keep going until you know them all.</p>
+            </div>
+          </div>
+          <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-blue-400 transition" />
+        </Link>
+
         <Link
           to="/lessons/match"
           className="flex items-center justify-between bg-white rounded-2xl border border-gray-100 shadow-sm p-6 hover:border-green-200 hover:shadow-md transition group"
