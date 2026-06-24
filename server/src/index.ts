@@ -8,6 +8,7 @@ import wordsRouter from './routes/words'
 import translateRouter from './routes/translate'
 import authRouter from './routes/auth'
 import adminRouter from './routes/admin'
+import chatRouter from './routes/chat'
 import { errorHandler } from './middleware/errorHandler'
 
 dotenv.config()
@@ -33,6 +34,7 @@ app.use('/api/words', wordsRouter)
 app.use('/api/translate', translateRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/admin', adminRouter)
+app.use('/api/chat', chatRouter)
 
 app.use(errorHandler)
 

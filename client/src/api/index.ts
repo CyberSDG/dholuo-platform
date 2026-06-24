@@ -32,6 +32,11 @@ export const translateApi = {
     api.post('/translate', { text, source, target }),
 }
 
+export const chatApi = {
+  send: (messages: { role: 'user' | 'assistant'; content: string }[]) =>
+    api.post('/chat', { messages }),
+}
+
 export const authApi = {
   register: (email: string, username: string, password: string) =>
     api.post('/auth/register', { email, username, password }),

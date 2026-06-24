@@ -11,6 +11,10 @@ import Contribute from './pages/Contribute'
 import About from './pages/About'
 import Admin from './pages/Admin'
 import Login from './pages/Login'
+import Lessons from './pages/Lessons'
+import Chat from './pages/Chat'
+import WordMatch from './pages/WordMatch'
+import ReviewMistakes from './pages/ReviewMistakes'
 
 function ComingSoon({ page }: { page: string }) {
   return (
@@ -35,8 +39,10 @@ export default function App() {
         <Route path="/practice" element={<Practice />} />
         <Route path="/translate" element={<Translate />} />
         <Route path="/contribute" element={<Contribute />} />
-        <Route path="/lessons" element={<ComingSoon page="Lessons" />} />
-        <Route path="/chat" element={<ComingSoon page="AI Chat" />} />
+        <Route path="/lessons" element={<Lessons />} />
+        <Route path="/lessons/match" element={<WordMatch />} />
+        <Route path="/lessons/review" element={<ReviewMistakes />} />
+        <Route path="/chat" element={<Chat />} />
         <Route path="/about" element={<About />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/login" element={<Login />} />
